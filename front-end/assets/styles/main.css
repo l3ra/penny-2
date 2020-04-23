@@ -1,4 +1,8 @@
-
+*{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
 h1 {
     font-family: 'Amatic SC', cursive;
     font-size: 40px;
