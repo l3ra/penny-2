@@ -6,6 +6,7 @@
 h1 {
     font-family: 'Amatic SC', cursive;
     font-size: 40px;
+    overflow: hidden;
 }
 
 body {
