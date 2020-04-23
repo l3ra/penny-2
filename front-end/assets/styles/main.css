@@ -83,29 +83,21 @@ body {
     text-align: center;
     text-decoration: none;
     margin: 5px 2px;
-  }
+}
   
-  .fa:hover {
-      opacity: 0.7;
-  }
-  
-  .fa-facebook {
-    background: #55ACEE;
-    color: white;
-  }
+.fa:hover {
+  opacity: 0.7;
+  color: #ADD8E6;
+ }
+ 
 
-  .fa-twitter {
-    background: #55ACEE;
+.fa{
+    background: #FFC0CB;
     color: white;
-  }
-
-  .fa-instagram {
-    background:#55ACEE;
-    color: white;
-  }
+    border-radius: 25px;
+}
 
 /* Join Page Styles */
-
 .centered-form {
     background: #ffc0cb!important;
     width: 100vw;
@@ -130,7 +122,6 @@ body {
 }
 
 /* Chat Page Layout */
-
 .chat {
     display: flex;
     height: 90vh;
@@ -145,7 +136,6 @@ body {
 }
 
 /* Chat styles */
-
 .chat__main {
     flex-grow: 1;
     display: flex;
@@ -160,7 +150,6 @@ body {
 }
 
 /* Message Styles */
-
 .message {
     margin-bottom: 16px;   
 }
@@ -181,7 +170,6 @@ body {
 }
 
 /* Message Composition Styles */
-
 .compose {
     display: flex;
     flex-shrink: 0;
@@ -208,7 +196,6 @@ body {
 }
 
 /* Chat Sidebar Styles */
-
 .room-title {
     font-weight: 400;
     font-size: 22px;
@@ -229,5 +216,5 @@ body {
     padding: 12px 24px 0 24px;
 }
 
-/* footer  */
+
 
