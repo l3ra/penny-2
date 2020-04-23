@@ -1,7 +1,12 @@
+html {
+    scroll-behavior: smooth;
+}
+
 *{
     margin: 0;
     padding: 0;
 }
+
 h1 {
     font-family: 'Amatic SC', cursive;
     font-size: 40px;
@@ -201,10 +206,31 @@ body {
     font-size: 14px;
 }
 
-canvas {
-    border: #2c2f3a;
-
+.tooltip-canvas {
+    float: right;
+    padding: 10px;
+    color: black;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    width: 120px;
+    height: 80px;
+    background:white;
+    position: relative;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
 }
+
+.tooltip-canvas:before {
+    content: "";
+    position: absolute;
+    right: 100%;
+    top: 26px;
+    width: 0;
+    height: 0;
+    border-top: 13px solid transparent;
+    border-right: 26px solid whitesmoke;
+    border-bottom: 13px solid transparent;
+  }
 
 /* Chat Sidebar Styles */
 .room-title {
