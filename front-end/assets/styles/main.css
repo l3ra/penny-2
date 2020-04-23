@@ -133,6 +133,7 @@ body {
 
 .chat {
     display: flex;
+    height: 90vh;
 }
 
 .chat__sidebar {
