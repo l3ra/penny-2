@@ -166,6 +166,12 @@ window.addEventListener("load", () => {
     canvas.addEventListener("mouseup", finishedPosition);
     canvas.addEventListener("mousemove", draw);
 })
+    // Tooltip Destroy after click
+    function remove(el) {
+        var element = el;
+        element.remove();
+        }
+
 // var dataURL = canvas.toDataURL();
 // var w=window.open('about:blank','image from canvas');
 // w.document.write("<img src='"+d+"' alt='from canvas'/>");
