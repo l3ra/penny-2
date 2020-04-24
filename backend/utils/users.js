@@ -38,14 +38,6 @@ const getUsersInRoom = (room) => {
     return users.filter((user) => user.room === room)
 }
 
-addUser({
-    id: 3,
-    username: 'ytr',
-    room: 'hgf'
-})
-
-console.log(users)
-
 const removedUser = removeUser(3)
 
 console.log(removedUser)
