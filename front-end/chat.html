@@ -5,7 +5,7 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="./assets/styles/main.css" />
@@ -46,7 +46,7 @@
                 <div id="message" class="chat__messages"></div>
                 <!-- FORMS  -->
                 <span>
-                    <form id="message-form">
+                    <form id="message-form"> 
                         <input name="message" placeholder="Message" pattern="^.\S*" title="Try to say it with one word!" required autocomplete="off">
                         <button id="send">Send</button>
                     </form>
@@ -57,7 +57,7 @@
                     </form>   
                     <button id="send-location">Send location</button>
                     <form id="image-form" action="/upload" method="POST" enctype="multipart/form-data">
-                        <input id="siofu_input" name="image" type="file" multiple accept="image/*" enctype="multipart/form-data">
+                        <input  name="image" type="file" multiple accept="image/*">
                         <button id="submitImage" type="submit">Send Image</button>
                     </form>
                     <a class="tooltip-canvas" onclick="remove(this)" href="#drawing-button" data-toggle="tooltip" data-placement="left" title="Draw Yourself!">Start Drawing!</a>
@@ -118,6 +118,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.3/qs.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@2.12.1/dist/index.min.js"></script>
+        <script src="http://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script src="/assets/js/chat.js"></script>
     </body>

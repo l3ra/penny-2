@@ -189,13 +189,16 @@ socket.on('image', (message) => {
 })
 
 // SOCKET IMAGE UPLOADER
-var uploader = new SocketIOFileUpload(socket);
-uploader.listenOnSubmit(document.getElementById("submitImage"), document.getElementById("siofu_input"));
+// var uploader = new SocketIOFileUpload(socket);
+// uploader.listenOnSubmit(document.getElementById("submitImage"), document.getElementById("siofu_input"));
 
 $imageForm.addEventListener('submit', (e) => {
     e.preventDefault()
     $imageFormButton.setAttribute('disabled', 'disabled')
     const image = e.target.elements.image.value
+    console.log(image)
+    newImage = e.target.elements.image.value.replace("C:\\fakepath\\", "")
+    console.log(newImage)
     socket.emit('sendImage', image, (error) => {
         $imageFormButton.removeAttribute('disabled')
         $imageFormInput.value = ''

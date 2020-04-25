@@ -30,15 +30,21 @@ const storage = multer.diskStorage({
 });
 
 // Init UPLOAD PHOTO
+app.set('view engine', 'ejs')
+
 const upload = multer({
     storage: storage
 }).single('image')
 
-app.get('/connect', (req, res) => {
-    res.render('connect')
-})
 app.post('/upload', (req, res) => {
-    res.send('test')
+    upload(req, res, (err) => {
+        if (err) {
+            console.log('error uploading image')
+        } else {
+            console.log(req.file)
+            res.send('test')
+        }
+    })
 })
 
 // START CONNECTION
