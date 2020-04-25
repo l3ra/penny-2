@@ -171,7 +171,7 @@ window.addEventListener("load", () => {
         var element = el;
         element.remove();
         }
-
+// SAVE CANVAS
 // var dataURL = canvas.toDataURL();
 // var w=window.open('about:blank','image from canvas');
 // w.document.write("<img src='"+d+"' alt='from canvas'/>");
@@ -182,16 +182,12 @@ socket.on('image', (message) => {
     const html = Mustache.render(imageTemplate, {
         username: message.username, 
         image: message.image,
+        newImage: newImage,
         createdAt: moment(message.createdAt).format('h:mm a')
     })
     $messages.insertAdjacentHTML('beforeend', html)
     autoscroll()
 })
-
-// SOCKET IMAGE UPLOADER
-// var uploader = new SocketIOFileUpload(socket);
-// uploader.listenOnSubmit(document.getElementById("submitImage"), document.getElementById("siofu_input"));
-
 $imageForm.addEventListener('submit', (e) => {
     e.preventDefault()
     $imageFormButton.setAttribute('disabled', 'disabled')
@@ -208,6 +204,11 @@ $imageForm.addEventListener('submit', (e) => {
         console.log('Image delivered!')
     })
 })
+// SOCKET IMAGE UPLOADER
+var newSocket = io.connect()
+var uploader = new SocketIOFileUpload(newSocket);
+uploader.listenOnSubmit(document.getElementById("submitImage"), document.getElementById("siofu_input"));
+
 // JOIN ROOM + CHECK FOR ERROR
 socket.emit('join', { username, room}, (error) => {
     if (error) {
