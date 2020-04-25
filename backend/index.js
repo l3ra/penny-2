@@ -20,32 +20,28 @@ const publicDirectoryPath = path.join(__dirname, '../front-end')
 
 app.use(express.static(publicDirectoryPath))
 
-//MULTER IMAGE STORAGE
-const storage = multer.diskStorage({
-    destination: './front-end/uploads/',
-    filename: function(req, file, cb){
-        cb(null, file.fieldname + '-' + Date.now() + 
-        path.extname(file.originalname));
-        }
-});
-
-// Init UPLOAD PHOTO
-app.set('view engine', 'ejs')
-
-const upload = multer({
-    storage: storage
-}).single('image')
-
-app.post('/upload', (req, res) => {
-    upload(req, res, (err) => {
-        if (err) {
-            console.log('error uploading image')
-        } else {
-            console.log(req.file)
-            res.send('test')
-        }
-    })
-})
+// //MULTER IMAGE STORAGE
+// const storage = multer.diskStorage({
+//     destination: './front-end/uploads/',
+//     filename: function(req, file, cb){
+//         cb(null, file.fieldname + '-' + Date.now() + 
+//         path.extname(file.originalname));
+//         }
+// });
+// app.set('view engine', 'ejs')
+// const upload = multer({
+//     storage: storage
+// }).single('image')
+// app.post('/upload', (req, res) => {
+//     upload(req, res, (err) => {
+//         if (err) {
+//             console.log('error uploading image')
+//         } else {
+//             console.log(req.file)
+//             res.send('test')
+//         }
+//     })
+// })
 
 // START CONNECTION
 io.on('connection', (socket) => {
