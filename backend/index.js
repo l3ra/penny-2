@@ -6,8 +6,14 @@ const multer = require('multer')
 const ejs = require('ejs')
 const siofu = require("socketio-file-upload")
 const Filter = require('bad-words')
+const mongoose = require('mongoose')
+const bodyParser = require("body-parser");
 const {generateMessage, generateLocation, generateColour, generateImage} = require('./utils/message')
 const {addUser, removeUser, getUser, getUsersInRoom} = require('./utils/users')
+
+//db connection
+const Chat = require("./models/saveChat");
+const connect = require("../dbconnect");
 
 // START SERVER 
 const app = express()
@@ -19,6 +25,8 @@ const port = process.env.PORT || 3000
 const publicDirectoryPath = path.join(__dirname, '../front-end')
 
 app.use(express.static(publicDirectoryPath))
+app.use(bodyParser.json());
+
 
 // //MULTER IMAGE STORAGE
 // const storage = multer.diskStorage({
@@ -73,6 +81,12 @@ io.on('connection', (socket) => {
             return callback('It takes one to know one!')
         }
         io.to(user.room).emit('message', generateMessage(user.username, message))
+        //save chat to the database
+        connect.then(db => {
+        console.log("connected correctly to the server");
+        let chatMessage = new Chat({ message, sender: user.username });
+        chatMessage.save();
+        });
         callback()
     })
 
@@ -105,6 +119,7 @@ io.on('connection', (socket) => {
         }
     })
 })
+
 
 server.listen(port, () => {
     console.log(`Server is up on port ${port}!`)
