@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const config = require('config')
-const dbURL = config.get('MongoDB.connectionString')
+const dbURL = config.get('MongoDB.userconnectionString')
 mongoose.Promise = require("bluebird");
 
 
