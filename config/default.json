@@ -1,0 +1,5 @@
+{
+    "MongoDB": {
+        "userconnectionString": "mongodb+srv://penny-web:qzYFQCpyGYWJg8nI@penny-db-xtot7.mongodb.net/test?retryWrites=true&w=majority"
+    }
+}
