@@ -57,7 +57,7 @@ socket.on('message', (message) => {
     autoscroll()
 }) 
 $messageForm.addEventListener('submit', (e) => {
-    e.preventDefault() // prevent navigation to "#"
+    e.preventDefault() // prevents page reloading
     $messageFormButton.setAttribute('disabled', 'disabled')
     const message = e.target.elements.message.value
     socket.emit('sendMessage', message, (error) => {
