@@ -4,7 +4,7 @@ const socket = io()
 const $messageForm = document.querySelector('#message-form')
 const $colourForm = document.querySelector('#colour-form')
 const $imageForm = document.querySelector('#image-form')
-const $messageFormInput = $messageForm.querySelector('input')
+const $messageFormInput = $messageForm.querySelector('#message-input')
 const $colourFormInput = $colourForm.querySelector('input')
 const $imageFormInput = $imageForm.querySelector('input')
 const $messageFormButton = $messageForm.querySelector('#send')
@@ -224,3 +224,4 @@ socket.on('roomData', ({room, users}) => {
     })
     document.querySelector('#sidebar').innerHTML = html
 })
+
