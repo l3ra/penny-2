@@ -179,6 +179,7 @@ window.addEventListener("load", () => {
 // IMAGE
 socket.on('image', (message) => {
     console.log(message)
+        
     const html = Mustache.render(imageTemplate, {
         username: message.username, 
         image: message.image,
@@ -201,13 +202,14 @@ $imageForm.addEventListener('submit', (e) => {
         if (error) {
             return console.log(error)
         }
-        console.log('Image delivered!')
+        console.log('Image delivered!', newImage)
+        document.getElementById('myImage').setAttribute('src', newImage);
     })
 })
 // SOCKET IMAGE UPLOADER
-var newSocket = io.connect()
-var uploader = new SocketIOFileUpload(newSocket);
-uploader.listenOnSubmit(document.getElementById("submitImage"), document.getElementById("siofu_input"));
+// var newSocket = io.connect()
+// var uploader = new SocketIOFileUpload(newSocket);
+// uploader.listenOnSubmit(document.getElementById("submitImage"), document.getElementById("siofu_input"));
 
 // JOIN ROOM + CHECK FOR ERROR
 socket.emit('join', { username, room}, (error) => {
