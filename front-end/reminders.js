@@ -169,7 +169,7 @@ function SetCookie (name, value, expires) {
 var lastKey;
 function SetLocalStorage (key, value) {
   lastKey = key;
-  localStorage.setItem(key, encode(value));
+  localStorage.setItem(key, value);
 }
 
 
