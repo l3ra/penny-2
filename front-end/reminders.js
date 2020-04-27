@@ -182,6 +182,10 @@ function createReminderItems (key, value)  {
   reminderList.appendChild(li);
   var reminderDate = document.createElement('div');
   reminderDate.className = 'float-right';
+  // reminderDate.appendChild(document.createTextNode(key+"th"));
+  ((parseInt(key%10)) === 1)?  reminderDate.appendChild(document.createTextNode(key+"st")):
+  ((parseInt(key%10)) === 2)?  reminderDate.appendChild(document.createTextNode(key+"nd")):
+  ((parseInt(key%10)) === 3)?  reminderDate.appendChild(document.createTextNode(key+"rd")):
   reminderDate.appendChild(document.createTextNode(key+"th"));
   li.appendChild(reminderDate);
 }
