@@ -47,33 +47,41 @@ app.get("/chat/history", (request, response) => {
 });
 
 // //MULTER IMAGE STORAGE
-// const storage = multer.diskStorage({
-//     destination: './front-end/uploads/',
-//     filename: function(req, file, cb){
-//         cb(null, file.fieldname + '-' + Date.now() + 
-//         path.extname(file.originalname));
-//         }
-// });
-// app.set('view engine', 'ejs')
-// const upload = multer({
-//     storage: storage
-// }).single('image')
-// app.post('/upload', (req, res) => {
-//     upload(req, res, (err) => {
-//         if (err) {
-//             console.log('error uploading image')
-//         } else {
-//             console.log(req.file)
-//             res.send('test')
-//         }
-//     })
-// })
+const storage = multer.diskStorage({
+    destination: './front-end/uploads/',
+    filename: function(req, file, cb){
+        cb(null, file.fieldname + '-' + Date.now() + 
+        path.extname(file.originalname));
+        }
+});
+app.get('/gallery', (req, res) => {
+    res.render('gallery')
+})
+app.set('view engine', 'ejs')
+const upload = multer({
+    storage: storage,
+    limits:{fileSize: 100000}
+}).single('myImage')
+app.post('/upload', (req, res) => {
+    upload(req, res, (err) => {
+        if (err) {
+            res.render('gallery', {
+                msg: err
+            })
+        } else {
+            res.render('gallery', {
+                msg: 'File Uploaded!',
+                file: `uploads/${req.file.filename}`
+            });
+        }
+    })
+})
 
 // START CONNECTION
 io.on('connection', (socket) => {
-    var uploader = new siofu() // IMAGE UPLOAD
-    uploader.dir = path.join(__dirname, '../front-end/uploads')
-    uploader.listen(socket)
+    // var uploader = new siofu() // IMAGE UPLOAD
+    // uploader.dir = path.join(__dirname, '../front-end/uploads')
+    // uploader.listen(socket)
 
     console.log('New WebSocket connection')
  

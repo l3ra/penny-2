@@ -40,44 +40,33 @@
                   <li class="nav-item">
                     <a class="nav-link" href="./reminders.html">Reminders</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/gallery">Gallery</a>
-                  </li>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./gallery">Gallery</a>
+                </li>
               </ul>
               <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button id="search-button" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
               </form>
+              
             </div>
           </nav>
       </header>
 
-
-      <main>
-          <!-- Page Content -->
-        <div class="container">
-
-          <!-- Heading Row -->
-          <div class="row align-items-center my-5">
-            <div class="col-lg-4">
-              <h1 class="font-weight-thick">Have you forgotten someone today?</h1>
-              <hr>
-              <p>We know that life is busy and sometimes, before you know it, the day has slipped away! 
-                  Use our handy calendar function to remind you when it's time to check in on a loved one.
-              </p>
-            </div>
-            <!-- /.col-md-4 -->
-            <div class="col-lg-6">
-              <script src="reminders.js"></script>
-
-            </div>
-            <!-- /.col-lg-8 -->
-
-          </div>
-          <!-- /.row -->
-      </main>
-      
-
+      <h1>Gallery</h1> 
+      <%= typeof msg != 'undefined' ? msg : '' %>
+      <form action="/upload" method="POST" enctype="multipart/form-data">
+        <div class="galleryButton">
+          <span>Image</span>
+          <input name="myImage" type="file" accept="image/*">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
+        <button type="submit" class="galleryButton">Submit</button>
+      </form>
+      <img src="<%= typeof file != 'undefined' ? file : '' %>" class="responsive-img">
        
       <!-- Footer -->
       <footer class=" py-4 bg-dark fixed-bottom">
