@@ -137,6 +137,12 @@ function GetCookie (name) {
   return null;
 }
 
+function GetLocalStorage (key) {
+  if (localStorage.getItem(key) != null) 
+    return localStorage.getItem(key);
+  return null;
+}
+
 
 
 //
@@ -160,7 +166,39 @@ function SetCookie (name, value, expires) {
   console.log('Cookie set: '+name + "=" + encode(value) + ((expires == null) ? "" : ("; expires=" + expires.toGMTString())));
 }
 
+var lastKey;
+function SetLocalStorage (key, value) {
+  lastKey = key;
+  localStorage.setItem(key, encode(value));
+}
 
+
+function createReminderItems (key, value)  {
+  var reminderList = document.getElementById("reminderList");
+  var newReminderItem = value;
+  var li = document.createElement("li");
+  li.className = 'list-group-item';
+  li.appendChild(document.createTextNode(newReminderItem));
+  reminderList.appendChild(li);
+  var reminderDate = document.createElement('div');
+  reminderDate.className = 'float-right';
+  // reminderDate.appendChild(document.createTextNode(key+"th"));
+  ((parseInt(key%10)) === 1)?  reminderDate.appendChild(document.createTextNode(key+"st")):
+  ((parseInt(key%10)) === 2)?  reminderDate.appendChild(document.createTextNode(key+"nd")):
+  ((parseInt(key%10)) === 3)?  reminderDate.appendChild(document.createTextNode(key+"rd")):
+  reminderDate.appendChild(document.createTextNode(key+"th"));
+  li.appendChild(reminderDate);
+}
+  
+function loadListItems () {
+  const items = { ...localStorage };
+  window.onload = function init() {
+    for (var i=0; i<Object.keys(items).length; i++) {
+      console.log(Object.keys(items)[i], Object.values(items)[i]);
+      createReminderItems(Object.keys(items)[i], Object.values(items)[i]);
+    }
+  }
+}
 
 //  Function to delete a cookie. (Sets expiration date to current date/time)
 
@@ -187,7 +225,7 @@ function arrayOfDaysInMonths(isLeapYear)
    this[3] = 30;
    this[4] = 31;
    this[5] = 30;
-   this[6] = 31;
+   this[6] = 31; 
    this[7] = 31;
    this[8] = 30;
    this[9] = 31;
@@ -206,12 +244,12 @@ function daysInMonth(month, year){
 
 function calendar()
 {
-
-   var monthNames = "JanFebMarAprMayJunJulAugSepOctNovDec";
-   var today      = new Date();
-   var day        = today.getDate();
-   var month      = today.getMonth();
-   var year       = today.getYear() + 1900;
+  loadListItems();
+  var monthNames = "JanFebMarAprMayJunJulAugSepOctNovDec";
+  var today      = new Date();
+  var day        = today.getDate();
+  var month      = today.getMonth();
+  var year       = today.getYear() + 1900;
 
 // figure out how many days this month will have...
 
@@ -248,7 +286,7 @@ function calendar()
    {
       // Write the day
       var s = "" + i;
-      if ((GetCookie("d"+i) != null))
+      if ((GetLocalStorage(i) != null))
 
         // s = s.fontcolor(document.vlinkColor);
         s = s.fontcolor("#FF0000");
@@ -265,6 +303,7 @@ function calendar()
    }
    document.write("</tr></TABLE>");
    document.writeln("</CENTER>");
+
 }
 
 
@@ -279,17 +318,17 @@ function dayClick(day)
 {
         var expdate = new Date ();
             expdate.setTime (expdate.getTime() + (24 * 60 * 60 * 1000)); // 24 hrs from now
-        var prefix                = "d";
-        var theCookieName         = prefix + day;
-        var theDayclickedReminder = GetCookie(theCookieName);
+        // var prefix                = "D";
+        var theStorageItemKey         = day;
+        var theDayclickedReminder = GetLocalStorage(theStorageItemKey);
     if (theDayclickedReminder != null) {
-        alert("The reminder for day " + day + " is:"  + theDayclickedReminder);
+        alert("The reminder for day " + day + " is: "  + theDayclickedReminder);
     } // end if
         if (confirm("Do you wish to enter a reminder for day " + day + " of this month?"))
         {
-                x = prompt("Enter a reminder for day "+ day + " of this month", theDayclickedReminder);
-        SetCookie (theCookieName, x, expdate);
-        console.log(GetCookie('Get Cookie called: ' +theCookieName));
+                reminder = prompt("Enter a reminder for day "+ day + " of this month", theDayclickedReminder);
+        SetLocalStorage (theStorageItemKey, reminder);
+        createReminderItems (theStorageItemKey, reminder);
     } // end if
 }
 
