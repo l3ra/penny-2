@@ -174,27 +174,25 @@ function SetLocalStorage (key, value) {
 
 
 function createReminderItems (key, value)  {
-  window.onload = init;
-  function init(){
-    var reminderList = document.getElementById("reminderList");
-    console.log(reminderList);
-    var newReminderItem = value;  
-    var li = document.createElement("li");
-    li.className = 'list-group-item';
-    li.appendChild(document.createTextNode(newReminderItem));
-    reminderList.appendChild(li);
-    var reminderDate = document.createElement('div');
-    reminderDate.className = 'float-right';
-    reminderDate.appendChild(document.createTextNode(key+"th"));
-    li.appendChild(reminderDate);
-  }
+  var reminderList = document.getElementById("reminderList");
+  var newReminderItem = value;
+  var li = document.createElement("li");
+  li.className = 'list-group-item';
+  li.appendChild(document.createTextNode(newReminderItem));
+  reminderList.appendChild(li);
+  var reminderDate = document.createElement('div');
+  reminderDate.className = 'float-right';
+  reminderDate.appendChild(document.createTextNode(key+"th"));
+  li.appendChild(reminderDate);
 }
   
 function loadListItems () {
   const items = { ...localStorage };
-  for (var i=0; i<Object.keys(items).length; i++) {
-    console.log(Object.keys(items)[i], Object.values(items)[i]);
-    createReminderItems(Object.keys(items)[i], Object.values(items)[i]);
+  window.onload = function init() {
+    for (var i=0; i<Object.keys(items).length; i++) {
+      console.log(Object.keys(items)[i], Object.values(items)[i]);
+      createReminderItems(Object.keys(items)[i], Object.values(items)[i]);
+    }
   }
 }
 
@@ -243,11 +241,11 @@ function daysInMonth(month, year){
 function calendar()
 {
   loadListItems();
-   var monthNames = "JanFebMarAprMayJunJulAugSepOctNovDec";
-   var today      = new Date();
-   var day        = today.getDate();
-   var month      = today.getMonth();
-   var year       = today.getYear() + 1900;
+  var monthNames = "JanFebMarAprMayJunJulAugSepOctNovDec";
+  var today      = new Date();
+  var day        = today.getDate();
+  var month      = today.getMonth();
+  var year       = today.getYear() + 1900;
 
 // figure out how many days this month will have...
 
@@ -284,7 +282,7 @@ function calendar()
    {
       // Write the day
       var s = "" + i;
-      if ((GetCookie("d"+i) != null))
+      if ((GetLocalStorage(i) != null))
 
         // s = s.fontcolor(document.vlinkColor);
         s = s.fontcolor("#FF0000");
@@ -326,7 +324,6 @@ function dayClick(day)
         {
                 reminder = prompt("Enter a reminder for day "+ day + " of this month", theDayclickedReminder);
         SetLocalStorage (theStorageItemKey, reminder);
-        console.log(theStorageItemKey, reminder);
         createReminderItems (theStorageItemKey, reminder);
     } // end if
 }
