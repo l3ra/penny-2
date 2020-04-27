@@ -8,12 +8,17 @@ const siofu = require("socketio-file-upload")
 const Filter = require('bad-words')
 const mongoose = require('mongoose')
 const bodyParser = require("body-parser");
+const config = require('config')
+const dbURL = config.get('MongoDB.mLab')
+var MongoClient = require('mongodb').MongoClient;
 const {generateMessage, generateLocation, generateColour, generateImage} = require('./utils/message')
 const {addUser, removeUser, getUser, getUsersInRoom} = require('./utils/users')
+const messageRouter = require('./routers/messages')
 
 //db connection
 const Chat = require("./models/saveChat");
 const connect = require("../dbconnect");
+
 
 // START SERVER 
 const app = express()
@@ -27,6 +32,19 @@ const publicDirectoryPath = path.join(__dirname, '../front-end')
 app.use(express.static(publicDirectoryPath))
 app.use(bodyParser.json());
 
+
+app.get("/chat/history", (request, response) => {
+    MongoClient.connect(dbURL, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("heroku_cjx6xx58");
+        dbo.collection("chats").find({}).toArray(function(err, result) {
+            if (err) throw err;
+            console.log(result);
+            response.send(result)
+            db.close();
+        })
+    });
+});
 
 // //MULTER IMAGE STORAGE
 // const storage = multer.diskStorage({
@@ -119,7 +137,6 @@ io.on('connection', (socket) => {
         }
     })
 })
-
 
 server.listen(port, () => {
     console.log(`Server is up on port ${port}!`)
