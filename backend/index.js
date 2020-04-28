@@ -76,15 +76,26 @@ app.post('/upload', (req, res) => {
                 msg: 'File Uploaded!',
                 file: `uploads/${req.file.filename}`
             });
-
             connect.then(db => {
                 let chatMessage = new Image({img: `uploads/${req.file.filename}`});
                 chatMessage.save();
             });
+
         }
     })
-
 })
+app.get("/upload", (request, response) => {
+    MongoClient.connect(dbURL, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("heroku_cjx6xx58");
+        dbo.collection("images").find({}).toArray(function(err, result) {
+            if (err) throw err;
+            console.log(result);
+            response.send(result)
+            db.close();
+        })
+    });
+});
 
 // START CONNECTION
 io.on('connection', (socket) => {

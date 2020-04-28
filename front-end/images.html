@@ -75,7 +75,7 @@
         const $messageText  = document.querySelector('#message-text')
         const $break  = document.querySelector('#break')
         const $history  = document.querySelector('#history')
-        fetch("/chat/history")
+        fetch("/upload")
         .then((response) => {
           if(response.status !== 200) {
           console.log("Something bad happened on the server");
@@ -85,13 +85,10 @@
             console.log(data);
             for(i=0; i<data.length; i++) {
               $history.insertAdjacentHTML ('beforeend',
-                data[i].sender + " sent a ")
-              if (data[i].message != null) {
+                data[i]._id + " sent a ")
+              if (data[i].img != null) {
                 $history.insertAdjacentHTML ('beforeend',
-                data[i].message + "<br /><br />")
-              } if (data[i].colour != null) {
-                $history.insertAdjacentHTML ('beforeend',
-                `<div style="width:20px;height:20px;background-color: ${data[i].colour};"> </div>`  + "<br /><br />")
+                `<img src="${data[i].img}" width=300vw>` )
               }
             }                
           })
