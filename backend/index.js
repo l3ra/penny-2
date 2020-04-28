@@ -17,6 +17,7 @@ const messageRouter = require('./routers/messages')
 
 //db connection
 const Chat = require("./models/saveChat");
+
 const connect = require("../dbconnect");
 
 
@@ -109,9 +110,8 @@ io.on('connection', (socket) => {
         io.to(user.room).emit('message', generateMessage(user.username, message))
         //save chat to the database
         connect.then(db => {
-        console.log("connected correctly to the server");
-        let chatMessage = new Chat({ message, sender: user.username });
-        chatMessage.save();
+            let chatMessage = new Chat({ message, sender: user.username, room: user.room });
+            chatMessage.save();
         });
         callback()
     })
@@ -119,6 +119,10 @@ io.on('connection', (socket) => {
     socket.on('sendColour', (colour, callback) => {
         const user = getUser(socket.id)
         io.to(user.room).emit('colour', generateColour(user.username, colour))
+        connect.then(db => {
+            let chatMessage = new Chat({ colour, sender: user.username, room: user.room });
+            chatMessage.save();
+        });
         callback()
     })
 

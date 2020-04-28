@@ -86,10 +86,13 @@
             for(i=0; i<data.length; i++) {
               $history.insertAdjacentHTML ('beforeend',
                 data[i].sender + " sent a ")
-              $history.insertAdjacentHTML ('beforeend',
+              if (data[i].message != null) {
+                $history.insertAdjacentHTML ('beforeend',
                 data[i].message + "<br />")
-              $history.insertAdjacentHTML('beforeend', "")
-              
+              } if (data[i].colour != null) {
+                $history.insertAdjacentHTML ('beforeend',
+                data[i].colour + "<br />")
+              }
             }                
           })
         })

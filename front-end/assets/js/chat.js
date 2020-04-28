@@ -82,6 +82,12 @@ socket.on('location', (message) => {
     autoscroll()
 })
 $sendLocationButton.addEventListener('click', () => {
+    var alerted = localStorage.getItem('alerted') || '';
+    if (alerted != 'yes') {
+     alert("User location will not show up in Notifications");
+     localStorage.setItem('alerted','yes');
+    }
+
     if (!navigator.geolocation) {
         return alert('Geolocation is not supported by your browser.')
     }
