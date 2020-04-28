@@ -3,6 +3,7 @@ const http = require('http')
 const express = require('express')
 const socketio = require('socket.io')
 const multer = require('multer')
+const fs = require('fs')
 const ejs = require('ejs')
 const siofu = require("socketio-file-upload")
 const Filter = require('bad-words')
@@ -17,6 +18,8 @@ const messageRouter = require('./routers/messages')
 
 //db connection
 const Chat = require("./models/saveChat");
+const Image = require("./models/saveImage");
+
 const connect = require("../dbconnect");
 
 
@@ -47,33 +50,58 @@ app.get("/chat/history", (request, response) => {
 });
 
 // //MULTER IMAGE STORAGE
-// const storage = multer.diskStorage({
-//     destination: './front-end/uploads/',
-//     filename: function(req, file, cb){
-//         cb(null, file.fieldname + '-' + Date.now() + 
-//         path.extname(file.originalname));
-//         }
-// });
-// app.set('view engine', 'ejs')
-// const upload = multer({
-//     storage: storage
-// }).single('image')
-// app.post('/upload', (req, res) => {
-//     upload(req, res, (err) => {
-//         if (err) {
-//             console.log('error uploading image')
-//         } else {
-//             console.log(req.file)
-//             res.send('test')
-//         }
-//     })
-// })
+const storage = multer.diskStorage({
+    destination: './front-end/uploads/',
+    filename: function(req, file, cb){
+        cb(null, file.fieldname + '-' + Date.now() + 
+        path.extname(file.originalname));
+        }
+});
+app.get('/gallery', (req, res) => {
+    res.render('gallery')
+})
+app.set('view engine', 'ejs')
+const upload = multer({
+    storage: storage,
+    limits:{fileSize: 100000}
+}).single('myImage')
+app.post('/upload', (req, res) => {
+    upload(req, res, (err) => {
+        if (err) {
+            res.render('gallery', {
+                msg: err
+            })
+        } else {
+            res.render('gallery', {
+                msg: 'File Uploaded!',
+                file: `uploads/${req.file.filename}`
+            });
+            connect.then(db => {
+                let chatMessage = new Image({img: `uploads/${req.file.filename}`});
+                chatMessage.save();
+            });
+
+        }
+    })
+})
+app.get("/upload", (request, response) => {
+    MongoClient.connect(dbURL, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("heroku_cjx6xx58");
+        dbo.collection("images").find({}).toArray(function(err, result) {
+            if (err) throw err;
+            console.log(result);
+            response.send(result)
+            db.close();
+        })
+    });
+});
 
 // START CONNECTION
 io.on('connection', (socket) => {
-    var uploader = new siofu() // IMAGE UPLOAD
-    uploader.dir = path.join(__dirname, '../front-end/uploads')
-    uploader.listen(socket)
+    // var uploader = new siofu() // IMAGE UPLOAD
+    // uploader.dir = path.join(__dirname, '../front-end/uploads')
+    // uploader.listen(socket)
 
     console.log('New WebSocket connection')
  
@@ -101,9 +129,8 @@ io.on('connection', (socket) => {
         io.to(user.room).emit('message', generateMessage(user.username, message))
         //save chat to the database
         connect.then(db => {
-        console.log("connected correctly to the server");
-        let chatMessage = new Chat({ message, sender: user.username });
-        chatMessage.save();
+            let chatMessage = new Chat({ message, sender: user.username, room: user.room });
+            chatMessage.save();
         });
         callback()
     })
@@ -111,6 +138,10 @@ io.on('connection', (socket) => {
     socket.on('sendColour', (colour, callback) => {
         const user = getUser(socket.id)
         io.to(user.room).emit('colour', generateColour(user.username, colour))
+        connect.then(db => {
+            let chatMessage = new Chat({ colour, sender: user.username, room: user.room });
+            chatMessage.save();
+        });
         callback()
     })
 

@@ -39,6 +39,9 @@
                 <li class="nav-item">
                   <a class="nav-link" href="./reminders.html">Reminders</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/gallery">Gallery</a>
+                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -83,16 +86,21 @@
             for(i=0; i<data.length; i++) {
               $history.insertAdjacentHTML ('beforeend',
                 data[i].sender + " sent a ")
-              $history.insertAdjacentHTML ('beforeend',
-                data[i].message + "<br />")
-              $history.insertAdjacentHTML('beforeend', "")
-              
+              if (data[i].message != null) {
+                $history.insertAdjacentHTML ('beforeend',
+                data[i].message + "<br /><br />")
+              } if (data[i].colour != null) {
+                $history.insertAdjacentHTML ('beforeend',
+                `<div style="width:20px;height:20px;background-color: ${data[i].colour};"> </div>`  + "<br /><br />")
+              }
             }                
           })
         })
         .catch((error) => {
           console.log("Something went wrong: ", error);
         });
+
+
 
       </script>
 
