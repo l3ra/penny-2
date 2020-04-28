@@ -6,14 +6,17 @@ const chatSchema = new Schema(
         message: {
             type: String
         },
+        colour: {
+            type: String
+        },
         sender: {
             type: String
         },
-        chatID: {
+        room: {
             type: String
         }
     }
 )
 let Chat = mongoose.model("Chat", chatSchema)
 
-module.exports = Chat;
+module.exports = Chat
