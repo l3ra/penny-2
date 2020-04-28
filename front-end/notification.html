@@ -88,10 +88,10 @@
                 data[i].sender + " sent a ")
               if (data[i].message != null) {
                 $history.insertAdjacentHTML ('beforeend',
-                data[i].message + "<br />")
+                data[i].message + "<br /><br />")
               } if (data[i].colour != null) {
                 $history.insertAdjacentHTML ('beforeend',
-                data[i].colour + "<br />")
+                `<div style="width:20px;height:20px;background-color: ${data[i].colour}; "> </div>`  + "<br /><br />")
               }
             }                
           })
