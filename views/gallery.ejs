@@ -67,7 +67,32 @@
         <button type="submit" class="galleryButton">Submit</button>
       </form>
       <img src="<%= typeof file != 'undefined' ? file : '' %>" class="responsive-img">
-       
+      <section id="gallery">
+
+      </section>
+      <script>
+        const $gallery  = document.querySelector('#gallery')
+        fetch("/upload")
+        .then((response) => {
+          if(response.status !== 200) {
+          console.log("Something bad happened on the server");
+          return;
+          }
+          response.json().then((data) => {
+            console.log(data);
+            for(i=0; i<data.length; i++) {
+              if (data[i].img != null) {
+                $gallery.insertAdjacentHTML ('beforeend',
+                `<img src="${data[i].img}" width=300vw><br />` )
+              }
+            }                
+          })
+        })
+        .catch((error) => {
+          console.log("Something went wrong: ", error);
+        });
+
+      </script>
       <!-- Footer -->
       <footer class=" py-4 bg-dark fixed-bottom">
         <div class="container text-center"></i>>
