@@ -3,6 +3,7 @@ const http = require('http')
 const express = require('express')
 const socketio = require('socket.io')
 const multer = require('multer')
+const fs = require('fs')
 const ejs = require('ejs')
 const siofu = require("socketio-file-upload")
 const Filter = require('bad-words')
@@ -17,6 +18,7 @@ const messageRouter = require('./routers/messages')
 
 //db connection
 const Chat = require("./models/saveChat");
+const Image = require("./models/saveImage");
 
 const connect = require("../dbconnect");
 
@@ -74,8 +76,14 @@ app.post('/upload', (req, res) => {
                 msg: 'File Uploaded!',
                 file: `uploads/${req.file.filename}`
             });
+
+            connect.then(db => {
+                let chatMessage = new Image({img: `uploads/${req.file.filename}`});
+                chatMessage.save();
+            });
         }
     })
+
 })
 
 // START CONNECTION
