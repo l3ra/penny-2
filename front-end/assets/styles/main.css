@@ -22,7 +22,7 @@ body {
     height: 100vh;
     width: 100%;
     background-position: center;
-    background-repeat: no-repeat, repeat;
+    background-repeat: repeat;
     background-size: cover;
     font-weight: 600;
 }
@@ -32,16 +32,6 @@ h2 {
 }
 
 /*Homepgbackground*/
-
-.homepgbackground {
-    background-image: url(../img//watercolor.png);
-    background-color: slategray;
-    height: 50%;
-    width: 100%;
-    background-position: center;
-    background-repeat: no-repeat, repeat;
-    background-size: cover;
-  }
 
   
 /*NavBarStyling*/
