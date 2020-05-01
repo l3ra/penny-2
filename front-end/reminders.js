@@ -116,7 +116,7 @@ function showCalendar(month, year) {
       else {
         cell = document.createElement("td");
         var s = "" + date;
-        if ((GetLocalStorage(increment+ ' ' + date + ' ' + months[currentMonth]) != null))
+        if ((GetLocalStorage(increment + ' ' + date + ' ' + months[currentMonth]) != null))
           s = s.fontcolor("#FF0000");
         s = s.link("javascript:dayClick(" + date + ")")
         cell.innerHTML = s;
