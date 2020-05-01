@@ -35,7 +35,7 @@ const publicDirectoryPath = path.join(__dirname, '../front-end')
 app.use(express.static(publicDirectoryPath))
 app.use(bodyParser.json());
 
-
+// Render chat history
 app.get("/chat/history", (request, response) => {
     MongoClient.connect(dbURL, function(err, db) {
         if (err) throw err;
