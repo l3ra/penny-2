@@ -60,15 +60,26 @@
                     </form>   
                     <button id="send-location">Send location</button>
                     <form id="image-form" enctype="multipart/form-data">
-                        <input  name="image" id="siofu_input" type="file" multiple accept="image/*">
-                        <button id="submitImage" type="submit">Send Image</button>
+                        <!-- <input  name="image" id="siofu_input" type="file" multiple accept="image/*">
+                        <button id="submitImage" type="submit">Send Image</button> -->
                     </form>
-                    <a class="tooltip-canvas" onclick="remove(this)" href="#drawing-button" data-toggle="tooltip" data-placement="left" title="Draw Yourself!">Start Drawing!</a>
+                    <a class="tooltip-canvas" onclick="remove(this)" href="#submitImage" data-toggle="tooltip" data-placement="left" title="Draw Yourself!">Start Drawing!</a>
                 </span>
             </div>
         </div>
         <canvas id="canvas"></canvas>
-        <button id="drawing-button" type="submit">Send Drawing</button>
+        <button id="submitImage" type="submit" onclick="saveCanvas()">Save Drawing</button>
+        <image id="theimage"></image>
+        <a id="link"></a>
+        <script src="http://hongru.github.io/proj/canvas2image/canvas2image.js"></script>
+        <script>
+            function saveCanvas() {
+                var link = document.getElementById('link');
+                link.setAttribute('download', 'your-drawing.png');
+                link.setAttribute('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
+                link.click();
+                }
+        </script>
         <!-- <script src="/siofu/client.js"></script>  -->
 <!-- TEMPLATES  -->
         <script id="message-template" type="text/html">
