@@ -90,11 +90,7 @@ function previous() {
 
 function showCalendar(month, year) {
   loadListItems();
-  var today = new Date();
-  var firstDay = today;
-  firstDay.setDate(1);
-
-  var startDay = firstDay.getDay();
+  var startDay = (new Date(year, month)).getDay();
 
   // Start the calendar table     
   calendar = document.getElementById("calendar-body");
@@ -121,7 +117,6 @@ function showCalendar(month, year) {
         if ((GetLocalStorage(date) != null))
           s = s.fontcolor("#FF0000");
         s = s.link("javascript:dayClick(" + date + ")")
-        console.log(s);
         cell.innerHTML = s;
         for (var child = cell.firstChild; child !== null; child = cell.nextSibling) {
           cell.appendChild(child);
