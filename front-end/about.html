@@ -43,7 +43,7 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto" >
           <li class="nav-item">
             <a class="nav-link" href="./about.html">About us</a>
           </li>
@@ -76,9 +76,9 @@
     </div>
 
     <!-- Container (About Section) -->
-    <div id="about" class="container-fluid">
+    <div id="about" class="container">
       <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-12">
           <h2>The mission of Penny</h2><br>
           <h4>Staying connected whilst staying apart</h4><br>
           <p>Penny is a different type of chat app. Its one that wants to bridge the gap of staying connected through
@@ -95,7 +95,7 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card container" style="border: none;">
       <div class="card-header">
         We need your help!
       </div>
@@ -113,10 +113,11 @@
     </div>
 
     <!-- Container (Contact Section) -->
-    <div id="contact" class="container-fluid bg-grey">
+    <div id="contact" class="container">
       <h2>Contact us</h2>
       <div class="row">
-        <div class="col-sm-6 slideanim">
+        <div class="col-sm-12 slideanim">
+          <form action="https://formspree.io/xdownqgk" method="POST">
           <div class="row">
             <div class="col-sm-6 form-group">
               <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
@@ -128,9 +129,10 @@
           <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
           <div class="row">
             <div class="col-sm-12 form-group">
-              <button class="btn btn-default pull-right" id="contact-button" type="submit">Send</button>
+              <button class="btn btn-default col-sm-12" id="contact-button" type="submit">Send</button>
             </div>
           </div>
+        </form>
         </div>
       </div>
     </div>
@@ -144,11 +146,7 @@
         class="fa fa-facebook"></a>
       <a href="https://twitter.com/login" class="fa fa-twitter"></a>
       <a href="https://www.instagram.com/" class="fa fa-instagram"></a>
-      <iframe
-        src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button&size=large&width=77&height=28&appId"
-        width="77" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
-        allowTransparency="true" allow="encrypted-media"></iframe>
-    </div>
+      </div>
     <div class="container">
       <p class="m-0 text-center text-white">Penny&copy;</p>
     </div>
