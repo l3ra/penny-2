@@ -2,7 +2,7 @@ html {
     scroll-behavior: smooth;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
 }
@@ -12,9 +12,11 @@ h1 {
     font-size: 40px;
     overflow: hidden;
 }
+
 header {
     overflow-x: hidden;
 }
+
 body {
     position: relative;
     background-image: url(../img/watercolor.png);
@@ -41,14 +43,14 @@ h2 {
     background-position: center;
     background-repeat: no-repeat, repeat;
     background-size: cover;
-  }
+}
 
-  
+
 /*NavBarStyling*/
 .navbar {
     outline-style: solid;
     outline-color: slategray;
-   
+
 }
 
 #search-button {
@@ -76,19 +78,19 @@ h2 {
 /*Aboutpennyonhomepg*/
 
 #learnmorebutton {
-    background-color: #ffc0cb!important;
+    background-color: #ffc0cb !important;
     border: none;
 
 }
 
-#learnmorebutton:hover  {
-    background-color: slategray!important;
-    
+#learnmorebutton:hover {
+    background-color: slategray !important;
+
 }
 
 /*Quote*/
 #quote {
-    background-color: #ffc0cb!important;
+    background-color: #ffc0cb !important;
 }
 
 
@@ -100,7 +102,7 @@ h2 {
 /* About us */
 .jumbotron {
     background-image: url('../img/aboutusbanner.png');
-    color:#fff;
+    color: #fff;
     padding: 100px;
     font-family: Montserrat, sans-serif;
     z-index: -1;
@@ -119,21 +121,23 @@ h2 {
 
 #contact {
     background-color: lightgrey;
-    
+
 }
 
 #contact-button {
-    background-color:#ffc0cb ;
+    background-color: #ffc0cb;
 }
+
 .centered-form input {
     margin-bottom: 16px;
     width: 100%;
 }
+
 /* Join Page Styles */
 .centered-form {
-    background: #ffc0cb!important;
+    background: #ffc0cb !important;
     width: 100vw;
-    height: 100vh;   
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -164,7 +168,7 @@ h2 {
 .chat__sidebar {
     height: 90vh;
     color: white;
-    background: #ffc0cb!important;
+    background: #ffc0cb !important;
     width: 225px;
     overflow-y: scroll
 }
@@ -187,7 +191,7 @@ h2 {
 /* Message Styles */
 
 .message {
-    margin-bottom: 16px;   
+    margin-bottom: 16px;
 }
 
 .message__name {
@@ -239,7 +243,7 @@ h2 {
     font-family: "Comic Sans MS", cursive, sans-serif;
     width: 120px;
     height: 80px;
-    background:white;
+    background: white;
     position: relative;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -256,14 +260,14 @@ h2 {
     border-top: 13px solid transparent;
     border-right: 26px solid whitesmoke;
     border-bottom: 13px solid transparent;
-  }
+}
 
 /* Chat Sidebar Styles */
 .room-title {
     font-weight: 400;
     font-size: 22px;
     background: #2c2f3a;
-    padding: 24px;   
+    padding: 24px;
 }
 
 .list-title {
@@ -283,22 +287,23 @@ h2 {
 .list-color {
     background-color: #FFC0CB;
 }
+
 .arrow {
     border: solid black;
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 3px;
-  }
-  
-  .right {
+}
+
+.right {
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
-  }
-  
-  .left {
+}
+
+.left {
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
-  }
+}
 
 /* Footer */
 .footer {
@@ -307,6 +312,7 @@ h2 {
     width: 100%;
     height: 60px;
 }
+
 /*Social Media*/
 .fa {
     padding: 20px;
@@ -317,34 +323,35 @@ h2 {
     margin: 5px 2px;
 }
 
-    .fa:hover {
+.fa:hover {
     opacity: 0.7;
     color: #ADD8E6;
 }
 
-    .fa-facebook {
+.fa-facebook {
     background: #55ACEE;
     color: white;
 }
 
-    .fa-twitter {
+.fa-twitter {
     background: #55ACEE;
     color: white;
 }
 
-    .fa-instagram {
-    background:#55ACEE;
+.fa-instagram {
+    background: #55ACEE;
     color: white;
 }
 
-    #socialmedia {
+#socialmedia {
     padding-bottom: 20px;
 }
 
-    .bg-dark {
-    background-color: lightgray!important;
+.bg-dark {
+    background-color: lightgray !important;
 
 }
+
 /* #footer {
     background-color: lightgray!important;
     width: 100%;
