@@ -92,11 +92,6 @@ h2 {
 }
 
 
-
-
-/* About us */
-
-
 /* About us */
 .jumbotron {
     background-image: url('../img/aboutusbanner.png');
@@ -111,9 +106,6 @@ h2 {
     font-family: 'Amatic SC', cursive;
     font-size: 65px;
 }
-
-
-
 
 /* Contact form */
 
@@ -307,6 +299,7 @@ h2 {
     width: 100%;
     height: 60px;
 }
+
 /*Social Media*/
 .fa {
     padding: 20px;
@@ -329,3 +322,7 @@ h2 {
     background-color: lightgray!important;
 }
 
+/*Notifications Styling*/
+.history {
+    color: #ffc0cb;
+}
