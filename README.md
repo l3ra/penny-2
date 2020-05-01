@@ -2,7 +2,7 @@
 Home: https://penny-2.herokuapp.com/ Connect: https://penny-2.herokuapp.com/connect.html and Chat: https://penny-2.herokuapp.com/chat.html
 
 To run on local server: 
-- Download ZIP
+- Download ZIP and "Extract All"
 - Open in terminal or VSCode
 - Type "npm install" into the console
 - Type "npm start" 
