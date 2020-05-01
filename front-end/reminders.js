@@ -4,13 +4,22 @@ function GetLocalStorage(key) {
   return null;
 }
 
-var increment = 0;
+function GetLocalStorageForColor(date) {
+  const items = {
+    ...localStorage
+  };
 
+  for (var i = 0; i < Object.keys(items).length; i++) {
+    dayAndMonth = Object.keys(items)[i].split(' ')[1] + Object.keys(items)[i].split(' ')[2];
+    if(dayAndMonth == date)
+      return 'color';
+  }
+}
 function SetLocalStorage(key, value) {
   const items = {
     ...localStorage
   };
-  increment = Object.keys(items).length;
+  var increment = Object.keys(items).length;
   key = 'reminder_'+increment.toString() + ' ' + key;
   localStorage.setItem(key, value);
 }
@@ -118,7 +127,7 @@ function showCalendar(month, year) {
       else {
         cell = document.createElement("td");
         var s = "" + date;
-        if ((GetLocalStorage('reminder_'+increment + ' ' + date + ' ' + months[currentMonth]) != null))
+        if ((GetLocalStorageForColor(date+months[month]) != null))
           s = s.fontcolor("#FF0000");
         s = s.link("javascript:dayClick(" + date + ")")
         cell.innerHTML = s;
