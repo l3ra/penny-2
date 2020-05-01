@@ -37,11 +37,11 @@ function loadListItems() {
   };
   window.onload = function init() {
     for (var i = 0; i < Object.keys(items).length; i++) {
-      console.log(Object.keys(items)[i], Object.values(items)[i]);
       createReminderItems(Object.keys(items)[i], Object.values(items)[i]);
     }
   }
 }
+
 
 function arrayOfDaysInMonths(isLeapYear) {
   this[0] = 31;
