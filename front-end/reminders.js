@@ -4,11 +4,13 @@ function GetLocalStorage(key) {
   return null;
 }
 
+var increment = 0;
+
 function SetLocalStorage(key, value) {
   const items = {
     ...localStorage
   };
-  let increment = Object.keys(items).length;
+  increment = Object.keys(items).length;
   key = increment.toString() + ' ' + key;
   localStorage.setItem(key, value);
 }
@@ -114,7 +116,7 @@ function showCalendar(month, year) {
       else {
         cell = document.createElement("td");
         var s = "" + date;
-        if ((GetLocalStorage(date) != null))
+        if ((GetLocalStorage(increment+ ' ' + date + ' ' + months[currentMonth]) != null))
           s = s.fontcolor("#FF0000");
         s = s.link("javascript:dayClick(" + date + ")")
         cell.innerHTML = s;
