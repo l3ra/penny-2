@@ -11,7 +11,7 @@ function SetLocalStorage(key, value) {
     ...localStorage
   };
   increment = Object.keys(items).length;
-  key = increment.toString() + ' ' + key;
+  key = 'reminder_'+increment.toString() + ' ' + key;
   localStorage.setItem(key, value);
 }
 
@@ -39,11 +39,13 @@ function loadListItems() {
   };
   window.onload = function init() {
     for (var i = 0; i < Object.keys(items).length; i++) {
-      createReminderItems(Object.keys(items)[i], Object.values(items)[i]);
+      reminderPrefix = Object.keys(items)[i].split(' ')[0]
+      if (reminderPrefix.includes('reminder')){
+        createReminderItems(Object.keys(items)[i], Object.values(items)[i]);
+      }
     }
   }
 }
-
 
 function arrayOfDaysInMonths(isLeapYear) {
   this[0] = 31;
@@ -116,7 +118,7 @@ function showCalendar(month, year) {
       else {
         cell = document.createElement("td");
         var s = "" + date;
-        if ((GetLocalStorage(increment + ' ' + date + ' ' + months[currentMonth]) != null))
+        if ((GetLocalStorage('reminder_'+increment + ' ' + date + ' ' + months[currentMonth]) != null))
           s = s.fontcolor("#FF0000");
         s = s.link("javascript:dayClick(" + date + ")")
         cell.innerHTML = s;
