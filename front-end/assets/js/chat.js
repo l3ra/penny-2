@@ -64,8 +64,11 @@ $messageForm.addEventListener('submit', (e) => {
         $messageFormButton.removeAttribute('disabled')
         $messageFormInput.value = ''
         $messageFormInput.focus()
+        if (error  == "It takes one to know one!") {
+            return alert('It takes one to know one!')
+        }
         if (error) {
-            return console.log(error)
+            return console.log("this is the callback!", error)
         } 
         console.log('Message delivered!')
     })
